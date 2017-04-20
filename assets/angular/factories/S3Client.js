@@ -1,12 +1,12 @@
 Wishginee.factory('S3Client', function ($q) {
 
-    AWS.config.update({'accessKeyId' : 'AKIAIXZ2K5EVH2D7JLKA', 'secretAccessKey' : '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' });
+    AWS.config.update({'accessKeyId' : 'AKIAIFC763DOFMQFODHQ', 'secretAccessKey' : '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' });
     AWS.config.region ='ap-south-1';
 
     var S3  = new AWS.S3({
-        'Bucket' : 'wishginee-api'
+        'Bucket' : 'wishginee-photos'
     });
-    var url = "https://s3.ap-south-1.amazonaws.com/wishginee-api/";
+    var url = "https://s3.ap-south-1.amazonaws.com/wishginee-photos/";
 
     return {
         uploadPhoto : function (params) {

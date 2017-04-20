@@ -1,6 +1,6 @@
 var Wishginee = angular.module('Wishginee', ['ngRoute', 'ngCookies']);
 
-Wishginee.constant('API_URL', 'http://wishginee.herokuapp.com/api');
+Wishginee.constant('API_URL', 'https://wishgine.herokuapp.com/api');
 
 Wishginee.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
