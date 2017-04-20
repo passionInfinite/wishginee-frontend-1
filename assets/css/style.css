@@ -1,0 +1,90 @@
+.right{
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.decorative-text{
+    font-family: 'Sansita', sans-serif;
+    color:white;
+}
+.margin-left-20{
+    margin-left: 20px !important;
+}
+.btn-facebook{
+    background-color: #3B5998 !important;
+    color: white !important;
+}
+.image-user{
+    height: 40px;
+}
+.align-sub-menu{
+    margin-left: -38px;
+    margin-top: 5px;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    text-decoration: none !important;
+     background-color: white !important;
+}
+.navbar.navbar-dark .navbar-nav .nav-item .dropdown-menu a:focus, .navbar.navbar-dark .navbar-nav .nav-item .dropdown-menu a:hover, .navbar.navbar-dark .navbar-toggler {
+    color: black !important;
+    box-shadow: none !important;
+}
+
+.padding-0{
+    padding: 0 !important;
+}
+.no-float{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    min-width: 210px;
+}
+.card-campaign-img{
+    height: 200px !important;
+    width: 100%;
+}
+.card-campaign-text-size{
+    font-size: 18px !important;
+    margin-bottom: 6px !important;
+}
+
+.card-campaign-info-size{
+    font-size: 14px !important;
+}
+
+.profile-photo{
+    height: 120px;
+    width: 120px;
+    position: relative;
+    top: 130px;
+    margin-left: 10px;
+    border: 2px solid white;
+}
+
+#coverfileselector {
+    margin: 10px;
+}
+#coverupload-file-selector {
+    display:none;
+}
+.margin-correction {
+    margin-right: 10px;
+}
+
+
+#profilefileselector {
+    margin: 10px;
+}
+#profileupload-file-selector {
+    display:none;
+}
+.margin-correction {
+    margin-right: 10px;
+}
+
+.profile-font{
+    font-size: 24px !important;
+}

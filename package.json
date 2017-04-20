@@ -1,0 +1,47 @@
+{
+  "name": "wishginee",
+  "version": "1.0.0",
+  "description": "Online crowd funding platform",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "angular-cookies": "^1.5.8",
+    "del": "^2.2.2",
+    "express": "^4.15.2",
+    "gulp": "^3.9.1",
+    "gulp-csso": "^2.0.0",
+    "gulp-less": "^3.3.0",
+    "progressbar.js": "^1.0.1",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "gulp-append": "^0.3.4",
+    "gulp-clean-css": "^3.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-minify": "0.0.15",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/passionInfinite/wishginee-frontend.git"
+  },
+  "keywords": [
+    "crowd",
+    "funding",
+    "wishginee",
+    "ngo",
+    "campaigns",
+    "events"
+  ],
+  "author": "passionInfinite",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/passionInfinite/wishginee-frontend/issues"
+  },
+  "homepage": "https://github.com/passionInfinite/wishginee-frontend#readme"
+}
