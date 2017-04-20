@@ -1,0 +1,101 @@
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="" ng-show="user.group != 'PU' && user.group != 'SU' && user.group != 'SC'" style="margin-top: 70px">
+                <div class="card" style="border: 4px solid red !important; border-style: dashed !important;">
+                    <div class="card-block">
+                        <div class="card-title text-center">
+                            <h4 style="padding-top: 20px">Organizing a campaign but in need of fund ?</h4>
+                            <br><p>Start getting fund by setting up your campaign</p>
+                            <button class="btn btn-primary btn-lg" ng-click="setUpCampaign();">Setup Campaign <i class="fa fa-smile-o"></i> </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 60px"></div>
+            <div class="row" style="margin-top: 20px" ng-repeat="campaign in campaigns">
+                <div class="col-md-12">
+                    <div class="card" ng-show="campaign.status != 'pending' && (campaign.fund_raised <= campaign.fund_needed)">
+                        <div class="view overlay hm-white-slight">
+                            <img ng-src="{{campaign.cover_photo}}" class="img-fluid card-campaign-img waves-effect" alt=""  style="height: 200px !important;">
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">
+                                <a ng-href="#!/campaigns/{{campaign._id}}"> <b>{{campaign.name}}</b></a> <span class="badge badge-success">{{campaign.category}}</span>
+                            </h4>
+                            <hr>
+                            <div class="card-text">
+                                <p class="card-campaign-text-size">
+                                    <b>Basic Information:</b>
+                                </p>
+                                <p class="card-campaign-info-size">
+                                    {{campaign.abstract}}
+                                    <br><span class="font-weight-bold">Place: </span>{{campaign.location}}
+                                    <br><span class="font-weight-bold">Contact: </span><a ng-href="mailto:{{campaign.contact_email}}">{{campaign.contact_email}}</a>
+                                </p>
+                                <hr>
+                            </div>
+                            <div class="card-text">
+                                <p class="card-campaign-text-size">
+                                    <b>Fund Information:</b>
+                                </p>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="fundNeeded">
+                                            <div class="bg-primary"></div>
+                                        </div>
+                                        <p class="card-text card-campaign-info-size"><b>Fund Needed:</b> <i class="fa fa-inr"></i> {{campaign.fund_needed}}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text card-campaign-info-size"><b>Fund Raised:</b> <i class="fa fa-inr"></i> {{campaign.fund_raised}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-6" ng-controller="PaymentsCtrl">
+                                        <button class="btn btn-sm btn-blue-grey text-muted" data-target="#donationModal" data-toggle="modal" id="{{campaign._id}}"><i class="fa fa-inr"></i> Donate </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <a ng-href="#!/campaigns/{{campaign._id}}" class="btn btn-sm btn-blue-grey text-muted"><i class="fa fa-expand"></i> View More </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" ng-controller="PaymentsCtrl" id="donationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title font-weight-normal" id="myModalLabel" style="padding: 5px"> Contribution Amount in Rupees</h6>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="number" class="form-control" placeholder="Contribution Amount in Rupees" ng-model="donation">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                                    <button type="button" class="btn btn-success btn-sm" ng-click="donateCampaign(campaign._id);" id="closeContributionModal"><i class="fa fa-heart"></i> Donate</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(function () {
+        $(document.body).on('show.bs.modal', function(e) {
+            campaignId = e.relatedTarget.id;
+        });
+    });
+</script>

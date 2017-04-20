@@ -1,0 +1,72 @@
+<!-- Navigation bar -->
+
+<nav class="navbar navbar-toggleable-md navbar-dark bg-primary fixed-top"  role="navigation">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigationBar" aria-controls="navigationBar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <strong>Wishginee</strong>
+        </a>
+        <!-- Mobile Navigation -->
+        <div class="collapse" id="navigationBar">
+            <ul class="navbar-nav text-center">
+                <li class="nav-item ">
+                    <a class="nav-link" ng-href="#!/aboutUs"><i class="fa fa-info-circle"></i> About Us<span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" ng-href="#!/explore-events">
+                        <i class="fa fa-calendar-o"> Events</i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ng-href="#!/explore-campaigns">
+                        <i class="fa fa-address-card-o"> Campaigns</i>
+                    </a>
+                </li>
+                <li class="nav-item" ng-hide="isLoggedIn">
+                    <a class="nav-link" data-toggle="modal" data-target="#loginModal"><i class="fa fa-user"></i> Login/Signup </a>
+                </li>
+                <li class="nav-item" ng-show="isLoggedIn">
+                    <div class="dropdown">
+                        <p class="white-text dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><i class="fa fa-user"></i> {{user.first_name+' '+user.last_name}}</p>
+                        <div class="dropdown-menu align-sub-menu">
+                            <a class="dropdown-item" ng-click="logout();"><i class="fa fa-sign-out"></i> Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden-md-down">
+            <ul class="nav navbar-nav right">
+                <li class="nav-item">
+                    <a class="nav-link" ng-href="#!/aboutUs"><i class="fa fa-info-circle"> About Us</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ng-href="#!/team"><i class="fa fa-users"> Team</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ng-href="#!/explore-events">
+                        <i class="fa fa-calendar-o"> Events</i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ng-href="#!/explore-campaigns">
+                        <i class="fa fa-address-card-o"> Campaigns</i>
+                    </a>
+                </li>
+                <li class="nav-item" ng-hide="isLoggedIn">
+                    <a class="nav-link">
+                        <img data-toggle="modal" data-target="#loginModal" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIzMnB4IiBoZWlnaHQ9IjMycHgiPgo8cGF0aCBkPSJNNjAsMzBDNjAsMTMuNDU4LDQ2LjU0MiwwLDMwLDBTMCwxMy40NTgsMCwzMGMwLDYuMTQyLDEuODU4LDExLjg1Nyw1LjAzOCwxNi42MThsLTAuMDAyLDAuMDIxbDAuMjA3LDAuMzAzICBjMC4xOCwwLjI2MywwLjM3NCwwLjUxMiwwLjU2MiwwLjc2OGMwLjA3NiwwLjEwNCwwLjE1MSwwLjIwOSwwLjIyOSwwLjMxM2MwLjIzOCwwLjMxNiwwLjQ4MywwLjYyNiwwLjczMiwwLjkzMSAgYzAuMDcyLDAuMDg4LDAuMTQ1LDAuMTc1LDAuMjE4LDAuMjYyYzEuMTU3LDEuMzg1LDIuNDI3LDIuNjUzLDMuNzkzLDMuNzk0YzAuMDgzLDAuMDY5LDAuMTY1LDAuMTM5LDAuMjQ5LDAuMjA4ICBjMC4yOTgsMC4yNDMsMC41OTksMC40ODEsMC45MDYsMC43MTJjMC4xMjQsMC4wOTQsMC4yNSwwLjE4NSwwLjM3NSwwLjI3N2MwLjI5MiwwLjIxNCwwLjU4NCwwLjQyNiwwLjg4NCwwLjYyOSAgYzAuMTYsMC4xMDksMC4zMjYsMC4yMTEsMC40ODgsMC4zMTdjMC40MTYsMC4yNywwLjgzNiwwLjUzMSwxLjI2NCwwLjc3OWMwLjI5OCwwLjE3NCwwLjU5NywwLjM0NywwLjkwMiwwLjUxMSAgYzAuMTg0LDAuMDk5LDAuMzcyLDAuMTkxLDAuNTU4LDAuMjg2YzAuMzI0LDAuMTY2LDAuNjUxLDAuMzI3LDAuOTgyLDAuNDgxYzAuMTY3LDAuMDc3LDAuMzM0LDAuMTUzLDAuNTAyLDAuMjI3ICBjMC4zODMsMC4xNywwLjc3MSwwLjMzMSwxLjE2MiwwLjQ4NWMwLjEyMSwwLjA0OCwwLjI0MSwwLjA5NywwLjM2MywwLjE0NGMxLjA3MywwLjQwNiwyLjE3NSwwLjc1NCwzLjMwMiwxLjAzNiAgYzAuMDQ2LDAuMDEyLDAuMDkzLDAuMDIxLDAuMTM5LDAuMDMyYzAuNDk4LDAuMTIyLDEuMDAxLDAuMjMxLDEuNTA5LDAuMzI4YzAuMTM1LDAuMDI2LDAuMjcsMC4wNDksMC40MDUsMC4wNzMgIGMwLjAyLDAuMDA0LDAuMDM5LDAuMDA3LDAuMDU5LDAuMDFsLTAuMDAzLDAuMDJsMC41MjgsMC4wNzRjMC4xMiwwLjAxOSwwLjI0LDAuMDMzLDAuMzYsMC4wNWwwLjExLDAuMDE1ICBjMC4wMjEsMC4wMDMsMC4wNDEsMC4wMDQsMC4wNjIsMC4wMDZjMC4wNTQsMC4wMDcsMC4xMDksMC4wMTQsMC4xNjMsMC4wMjFjMC4xNjQsMC4wMjIsMC4zMjcsMC4wNDMsMC40OTEsMC4wNjMgIGMwLjM5NywwLjA0NiwwLjc5NiwwLjA4MiwxLjE5OCwwLjExMmMwLjA4NCwwLjAwNiwwLjE2OCwwLjAxNiwwLjI1MSwwLjAyMmMwLjA5NiwwLjAwNiwwLjE5MywwLjAxMywwLjI4OSwwLjAxOSAgQzI4Ljg0Nyw1OS45NzksMjkuNDIxLDYwLDMwLDYwczEuMTUzLTAuMDIxLDEuNzI0LTAuMDUzYzAuMDk5LTAuMDA2LDAuMTk4LTAuMDEzLDAuMjk3LTAuMDJjMC4wODQtMC4wMDYsMC4xNjgtMC4wMTYsMC4yNTMtMC4wMjIgIGMwLjM5OC0wLjAzLDAuNzk1LTAuMDY2LDEuMTg5LTAuMTExYzAuMTY0LTAuMDE5LDAuMzI4LTAuMDQxLDAuNDkxLTAuMDYzYzAuMDY1LTAuMDA5LDAuMTMtMC4wMTYsMC4xOTQtMC4wMjUgIGMwLjAyLTAuMDAzLDAuMDQxLTAuMDA0LDAuMDYxLTAuMDA2bDAuMTAxLTAuMDE0YzAuMTEzLTAuMDE2LDAuMjI3LTAuMDMsMC4zMzktMC4wNDhsMC41NjEtMC4wNzlsLTAuMDAzLTAuMDIxICBjMC4wMDktMC4wMDIsMC4wMTgtMC4wMDMsMC4wMjctMC4wMDVjMC4xMzUtMC4wMjQsMC4yNy0wLjA0NywwLjQwNS0wLjA3M2MwLjUwOC0wLjA5NywxLjAxMS0wLjIwNiwxLjUwOS0wLjMyOCAgYzAuMDQ2LTAuMDExLDAuMDkzLTAuMDIxLDAuMTM5LTAuMDMyYzEuMTI3LTAuMjgyLDIuMjI5LTAuNjMsMy4zMDItMS4wMzZjMC4xMjItMC4wNDYsMC4yNDMtMC4wOTYsMC4zNjUtMC4xNDQgIGMwLjM5MS0wLjE1NCwwLjc3OC0wLjMxNSwxLjE2MS0wLjQ4NGMwLjE2OC0wLjA3NCwwLjMzNi0wLjE1LDAuNTAyLTAuMjI3YzAuMzMxLTAuMTU0LDAuNjU4LTAuMzE1LDAuOTgyLTAuNDgxICBjMC4xODctMC4wOTUsMC4zNzQtMC4xODgsMC41NTgtMC4yODZjMC4zMDUtMC4xNjQsMC42MDMtMC4zMzcsMC45MDItMC41MTFjMC40MjgtMC4yNDksMC44NDktMC41MDksMS4yNjQtMC43NzkgIGMwLjE2My0wLjEwNiwwLjMyOC0wLjIwOCwwLjQ4OC0wLjMxN2MwLjI5OS0wLjIwMywwLjU5Mi0wLjQxNSwwLjg4NC0wLjYyOWMwLjEyNS0wLjA5MiwwLjI1MS0wLjE4MywwLjM3NS0wLjI3NyAgYzAuMzA2LTAuMjMxLDAuNjA4LTAuNDY5LDAuOTA2LTAuNzEyYzAuMDg0LTAuMDY5LDAuMTY2LTAuMTM5LDAuMjQ5LTAuMjA4YzEuMzY2LTEuMTQyLDIuNjM2LTIuNDA5LDMuNzk0LTMuNzk1ICBjMC4wNzMtMC4wODcsMC4xNDUtMC4xNzMsMC4yMTYtMC4yNjFjMC4yNDktMC4zMDUsMC40OTQtMC42MTUsMC43MzItMC45MzFjMC4wNzgtMC4xMDMsMC4xNTItMC4yMDgsMC4yMjktMC4zMTMgIGMwLjE4OC0wLjI1NiwwLjM4Mi0wLjUwNSwwLjU2Mi0wLjc2OGwwLjIwNy0wLjMwM2wtMC4wMDItMC4wMjFDNTguMTQyLDQxLjg1Nyw2MCwzNi4xNDIsNjAsMzB6IE01OCwzMCAgYzAsNC45NzItMS4zMDksOS42NDItMy41OTEsMTMuNjk0Yy0xLjYwNy01LjMyOC02LjMyNi05LjE5LTExLjk4NS05LjY0Mkw0Mi4zODYsMzRoLTEuMDc1aC00Ljc3OWgtMS4xNjYgIEMzNS4xNjQsMzQsMzUsMzMuODM2LDM1LDMzLjYzNVYzMi45OWMwLTAuMTgzLDAuMTQ5LTAuMzAzLDAuMjc2LTAuMzUyYzYuNDM5LTIuNDIxLDEwLjQ1NS0xMi40NjQsOS42MTMtMTkuNDg4ICBjLTAuNDM5LTMuNjU4LTIuMjUtNi45MjctNC44ODMtOS4yOTVDNTAuNTE3LDcuODkyLDU4LDE4LjA4Niw1OCwzMHogTTUyLjUzOCw0Ni41OWMtMC4wODEsMC4xMDktMC4xNjIsMC4yMTctMC4yNDQsMC4zMjUgIGMtMC4yMjMsMC4yOTMtMC40NDgsMC41ODQtMC42ODIsMC44NjhjLTAuMDI0LDAuMDI5LTAuMDQ5LDAuMDU3LTAuMDczLDAuMDg2Yy0wLjgwOCwwLjk3Mi0xLjY4MSwxLjg4OC0yLjYxMSwyLjc0MyAgYy0wLjA1NSwwLjA1MS0wLjExLDAuMTAzLTAuMTY2LDAuMTUzYy0wLjI3NywwLjI1MS0wLjU2MSwwLjQ5NS0wLjg0OCwwLjczNWMtMC4wOSwwLjA3NS0wLjE4MSwwLjE0OS0wLjI3MiwwLjIyMyAgYy0wLjI3OSwwLjIyNy0wLjU2LDAuNDUtMC44NDcsMC42NjZjLTAuMDk3LDAuMDczLTAuMTk3LDAuMTQyLTAuMjk1LDAuMjE0Yy0wLjE2NSwwLjEyMS0wLjMzMiwwLjIzOC0wLjUsMC4zNTVWNDhoLTJ2Ni4yMzMgIGMtMC4wMzksMC4wMjMtMC4wNzgsMC4wNDUtMC4xMTgsMC4wNjhjLTAuMjU1LDAuMTQ2LTAuNTEsMC4yOTEtMC43NjksMC40MjhjLTAuMTc3LDAuMDk0LTAuMzU3LDAuMTg1LTAuNTM3LDAuMjc2ICBjLTAuMzAyLDAuMTUyLTAuNjA2LDAuMjk5LTAuOTEzLDAuNDRjLTAuMTUsMC4wNjktMC4yOTksMC4xMzgtMC40NSwwLjIwNGMtMC4zODUsMC4xNjgtMC43NzQsMC4zMjgtMS4xNjYsMC40NzkgIGMtMC4wODEsMC4wMzEtMC4xNiwwLjA2NS0wLjI0MSwwLjA5NWMtMSwwLjM3NC0yLjAyMiwwLjY5Mi0zLjA2MywwLjk1Yy0wLjA3NSwwLjAxOS0wLjE1MSwwLjAzNC0wLjIyNiwwLjA1MiAgYy0wLjQzMSwwLjEwMy0wLjg2NSwwLjE5Ny0xLjMwMiwwLjI3OWMtMC4xMDIsMC4wMTktMC4yMDUsMC4wMzctMC4zMDgsMC4wNTVMMzMuMTYyLDQ2SDM0di0yLjQ2NWw0LjQ3MSwyLjk4bDQuMTczLTEwLjQzMiAgYzUuMjc5LDAuNTk1LDkuNTI0LDQuNjczLDEwLjI0NywxMC4wMTJDNTIuNzc0LDQ2LjI2MSw1Mi42NTksNDYuNDI3LDUyLjUzOCw0Ni41OXogTTIzLjQ4Miw1Ny4yMjYgIGMtMC4wNzUtMC4wMTgtMC4xNS0wLjAzNC0wLjIyNS0wLjA1MmMtMS4wNDEtMC4yNTktMi4wNjQtMC41NzYtMy4wNjQtMC45NWMtMC4wODEtMC4wMy0wLjE2MS0wLjA2NC0wLjI0MS0wLjA5NSAgYy0wLjM5Mi0wLjE1MS0wLjc4MS0wLjMxMS0xLjE2NS0wLjQ3OWMtMC4xNTEtMC4wNjYtMC4zMDEtMC4xMzUtMC40NTEtMC4yMDRjLTAuMzA3LTAuMTQxLTAuNjExLTAuMjg4LTAuOTEzLTAuNDQgIGMtMC4xOC0wLjA5MS0wLjM2LTAuMTgxLTAuNTM3LTAuMjc2Yy0wLjI1OS0wLjEzNy0wLjUxNC0wLjI4My0wLjc2OS0wLjQyOGMtMC4wMzktMC4wMjMtMC4wNzktMC4wNDUtMC4xMTgtMC4wNjhWNDhoLTJ2NC45NTggIGMtMC4xNjctMC4xMTctMC4zMzUtMC4yMzUtMC41LTAuMzU1Yy0wLjA5OC0wLjA3Mi0wLjE5OC0wLjE0MS0wLjI5NS0wLjIxNGMtMC4yODctMC4yMTYtMC41NjgtMC40MzktMC44NDYtMC42NjUgIGMtMC4wOTItMC4wNzQtMC4xODMtMC4xNDktMC4yNzQtMC4yMjRjLTAuMjg3LTAuMjM5LTAuNTctMC40ODMtMC44NDYtMC43MzRjLTAuMDU3LTAuMDUxLTAuMTEyLTAuMTA0LTAuMTY4LTAuMTU1ICBjLTAuOTMtMC44NTUtMS44MDMtMS43Ny0yLjYxLTIuNzQyYy0wLjAyNC0wLjAyOS0wLjA0OS0wLjA1Ny0wLjA3My0wLjA4NmMtMC4yMzQtMC4yODQtMC40NTktMC41NzUtMC42ODItMC44NjggIGMtMC4wODItMC4xMDgtMC4xNjQtMC4yMTYtMC4yNDQtMC4zMjVjLTAuMTItMC4xNjMtMC4yMzUtMC4zMjktMC4zNTItMC40OTVjMC43MjQtNS4zMzksNC45NjgtOS40MTcsMTAuMjQ3LTEwLjAxMmw0LjE3MywxMC40MzIgIEwyNiw0My41MzVWNDZoMC44NGwtMS43MiwxMS41NjZjLTAuMTEyLTAuMDItMC4yMjQtMC4wMzktMC4zMzUtMC4wNkMyNC4zNDgsNTcuNDIzLDIzLjkxMyw1Ny4zMjksMjMuNDgyLDU3LjIyNnogTTI1LjQ5MSwzMC43OTEgIEMyMC43MDksMjkuMDIyLDE3LDIwLjg1LDE3LDE1YzAtMC4xMjgsMC4wMTUtMC4yNTMsMC4wMTktMC4zOGwwLjczMi0wLjkwM2MxLjY1MS0xLjk2NCw0LjQ2OS0yLjUyNiw3LjAxMi0xLjQgIEMyNS43ODUsMTIuNzcxLDI2Ljg3NCwxMywyOCwxM2MyLjk3MSwwLDUuNjQtMS42MTUsNy4wMjgtNC4xODRjMy4xODIsMS4wNDUsNi4wMjIsMy4wMTUsNy45NDMsNS40OTggIGMwLjI5Myw2LjEtMy4yOTQsMTQuNTMzLTguMzk4LDE2LjQ1MkMzMy42MTcsMzEuMTI2LDMzLDMxLjk5OSwzMywzMi45OXYwLjY0NWMwLDEuMTQ2LDAuODIsMi4xMDMsMS45MDQsMi4zMTlMMzMuMTk4LDM4aC02LjM5NiAgbC0xLjcwNi0yLjA0N0MyNi4xOCwzNS43MzgsMjcsMzQuNzgsMjcsMzMuNjM1VjMzQzI3LDMyLjAxNCwyNi4zOTUsMzEuMTI2LDI1LjQ5MSwzMC43OTF6IE0zMC4wNCwyLjAwMmMwLjAxMiwwLDAuMDIyLDAsMC4wMzMsMCAgYzAuNDg5LDAuMDAzLDAuOTcsMC4wMywxLjQzLDAuMDgzYzQuOTU5LDAuNTUzLDkuMTI2LDQuMDA1LDEwLjc1Miw4LjU4OWMtMi4xMTUtMS44NDItNC43MDgtMy4yNi03LjQ5Ny00LjAyN2wtMC44Ni0wLjIzNiAgbC0wLjMzMywwLjgyNkMzMi42NDQsOS41MjIsMzAuNDYsMTEsMjgsMTFjLTAuODQ1LDAtMS42NjItMC4xNzItMi40MjctMC41MTFjLTIuNzY2LTEuMjI0LTUuNzg2LTAuODkzLTguMDE3LDAuNzMgIGMwLjYxMy0yLjAyNiwxLjcyLTMuODgyLDMuMjYxLTUuNDJDMjMuMjcxLDMuMzUsMjYuNTMsMi4wMDIsMzAuMDQsMi4wMDJ6IE0zNCw0MC4xNjJMMzcuNDY5LDM2aDMuMDU0bC0yLjk5Myw3LjQ4NEwzNCw0MS4xMzIgIFY0MC4xNjJ6IE0zMi4zNjUsNTcuODg4Yy0wLjI3LDAuMDIzLTAuNTQxLDAuMDQ5LTAuODA5LDAuMDY1QzMxLjA0Miw1Ny45ODEsMzAuNTI1LDU4LDMwLjAwNyw1OGMtMC4wMzQsMC0wLjA2OS0wLjAwMy0wLjEwMy0wLjAwMyAgYy0wLjQ4NS0wLjAwMi0wLjk2OS0wLjAxNy0xLjQ1LTAuMDQ0Yy0wLjI2NC0wLjAxNS0wLjUzLTAuMDQxLTAuNzk2LTAuMDYzYy0wLjE4Ni0wLjAxNi0wLjM3MS0wLjAzMS0wLjU1Ni0wLjA1MUwyOC44NjIsNDZoMi4yNzcgIGwxLjc4NiwxMS44MzdDMzIuNzM5LDU3Ljg1NiwzMi41NTIsNTcuODcyLDMyLjM2NSw1Ny44ODh6IE0zMiw0NGgtNHYtMS43OThWNDBoNHYyLjIwMlY0NHogTTI2LDQwLjE2MnYwLjk3bC0zLjUyOSwyLjM1M0wxOS40NzgsMzYgIGgzLjA1NEwyNiw0MC4xNjJ6IE0xOS45ODIsMy44NmMtMC4xOTMsMC4xNzQtMC4zOTIsMC4zMzgtMC41NzgsMC41MjNDMTYuNTY0LDcuMjE4LDE1LDEwLjk4NywxNSwxNSAgYzAsNi42MjksNC4xOSwxNS41OTMsOS43OTcsMTcuNjY2QzI0LjkxNiwzMi43MTEsMjUsMzIuODQ4LDI1LDMzdjAuNjM1QzI1LDMzLjgzNiwyNC44MzYsMzQsMjQuNjM1LDM0aC0xLjE2NmgtNC43NzloLTAuNTQ1ICBjLTAuMDk2LDAtMC4xOTEsMC4wMTQtMC4yODEsMC4wMzljLTUuNzg1LDAuMzQzLTEwLjYzOCw0LjIzOS0xMi4yNzIsOS42NTZDMy4zMDksMzkuNjQyLDIsMzQuOTcyLDIsMzAgIEMyLDE4LjA5LDkuNDc4LDcuOSwxOS45ODIsMy44NnoiIGZpbGw9IiNGRkZGRkYiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" style="position:fixed;top:10px;"/>
+                    </a>
+                </li>
+                <li class="nav-item" ng-show="isLoggedIn">
+                    <img class="img-fluid rounded-circle image-user dropdown-toggle" ng-src="{{user.profile_photo}}" height="20"  data-toggle="dropdown" aria-haspopup="true">
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,62 @@
+<link href="../assets/css/admin_user_style.css" rel="stylesheet">
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10 col-sm-10" style="margin-top: 90px;">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <h3>My Contributions</h3>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-6" style="margin-bottom: 20px;">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-bold"><b>Donated to NGO</b></h5>
+                            <h6 class="font-weight-normal"><i class="fa fa-inr"></i> {{user.ngo_donation_count}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin-bottom: 20px;">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-normal"><b>Donated to Helping Hands</b></h5>
+                            <h6 class="font-weight-normal"><i class="fa fa-inr"></i> {{user.hh_donation_count}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-bold"><b>Donated to Campaigns</b></h5>
+                            <h6 class="font-weight-bold"><i class="fa fa-inr"></i> {{user.campaign_donation_count}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-bold"><b>Donated to Events</b></h5>
+                            <h6 class="font-weight-bold"><i class="fa fa-inr"></i> {{user.event_donation_count}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-bold"><b>My Total Contribution</b></h5>
+                            <h6 class="font-weight-bold"><i class="fa fa-inr"></i> {{user.ngo_donation_count + user.hh_donation_count}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

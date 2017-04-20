@@ -1,0 +1,73 @@
+<!--<link href="../assets/css/admin_user_style.css" rel="stylesheet">-->
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid" ng-init="loadDonations();">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10 col-sm-10" style="margin-top: 90px;">
+            <div class="row">
+                <div class="col-md-3" style="margin-bottom: 20px;">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-bold"><b>NGO (Raised)</b></h5>
+                            <h6 class="font-weight-normal"><i class="fa fa-inr"></i> {{donations.ngo_donations}} </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin-bottom: 20px;">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-normal"><b>HH (Raised)</b></h5>
+                            <h6 class="font-weight-normal"><i class="fa fa-inr"></i> {{donations.hh_donations}} </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin-bottom: 20px;">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-normal"><b>SC (Contributed)</b></h5>
+                            <h6 class="font-weight-normal"><i class="fa fa-inr"></i> {{donations.sc_donations}} </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin-bottom: 20px;">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-normal"><b>PU (Contributed)</b></h5>
+                            <h6 class="font-weight-normal"><i class="fa fa-inr"></i> {{donations.pu_donations}} </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-bold"><b>Campaigns Donations</b></h5>
+                            <h6 class="font-weight-bold"><i class="fa fa-inr"></i> {{donations.campaign_donations}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-bold"><b>Events Donations</b></h5>
+                            <h6 class="font-weight-bold"><i class="fa fa-inr"></i> {{donations.event_donations}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card text-center">
+                        <div class="card-block">
+                            <h5 class="font-weight-bold"><b>Total Donations</b></h5>
+                            <h6 class="font-weight-bold"><i class="fa fa-inr"></i> {{donations.total_donations}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

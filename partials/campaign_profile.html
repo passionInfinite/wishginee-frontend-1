@@ -1,0 +1,86 @@
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid" ng-init="loadCampaign();">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10" style="margin-top: 55px">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0px">
+                    <img class="img-fluid" ng-src="{{campaign.cover_photo}}" style="height: 250px !important;width: 100% !important; position:absolute;"/>
+                    <button class="btn btn-primary btn-sm" ng-click="followCampaign(campaign._id, campaign.user_id);" ng-hide="isFollowing" style="position: relative;float: right;"><i class="fa fa-heart-o"></i> Follow</button>
+                    <button class="btn btn-primary btn-sm" ng-click="unFollowCampaign(campaign._id);" ng-show="isFollowing" style="position: relative;float: right;"><i class="fa fa-heart"></i> Following</button>
+                    <!--<img class="img-fluid profile-photo" ng-src="{{campaign.profile_photo}}"/>-->
+                </div>
+            </div>
+            <div class="row" style="margin-top: 210px">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link text-primary active" data-toggle="tab" data-target="#information" role="tab"><i class="fa fa-user-o"></i> Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" data-toggle="tab" data-target="#followers" role="tab"><i class="fa fa-heart-o"></i> Followers <span class="badge badge-info">{{campaign.followers.length}}</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" data-toggle="tab" data-target="#donations" role="tab"><i class="fa fa-money"></i> Donations <span class="badge badge-info">{{campaign.donations.length}}</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in show active" id="information" role="tabpanel">
+                            <div style="padding: 15px">
+                                <h4 class="font-weight-bold">{{campaign.name}} - <span class="badge badge-danger text-white">{{campaign.category}}</span></h4>
+                                <p class="text-gray-dark">{{campaign.date.date.split(" ")[0].split("-").reverse().join("/")}}</p>
+                            </div>
+                            <hr style="margin-top: 0px!important; margin-bottom: 0px !important;">
+                            <div style="padding: 15px">
+                                <h5 class="font-weight-bold">Abstract: </h5>
+                                <p class="text-justify">{{campaign.abstract}}. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+                            </div>
+                            <hr style="margin-top: 0px!important; margin-bottom: 0px !important;">
+                            <div style="padding: 15px">
+                                <h5 class="font-weight-bold">Story: </h5>
+                                <p class="text-justify">{{campaign.story}}. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+                            </div>
+                            <hr style="margin-top: 0px!important; margin-bottom: 0px !important;">
+                            <div style="padding: 15px">
+                                <h5 class="font-weight-bold">Contact: </h5>
+                                <p class="text-justify text-danger"><i class="fa fa-envelope"></i> {{campaign.contact_email}} <i class="fa fa-mobile" style="margin-left: 10px"></i> {{campaign.contact_mobile}}</p>
+                                <p class="text-justify text-danger"><i class="fa fa-location-arrow"></i> {{campaign.location}}</p>
+                            </div>
+                            <hr style="margin-top: 0px!important; margin-bottom: 0px !important;">
+                            <div style="padding: 15px">
+                                <h5 class="font-weight-bold">Fund Info: </h5>
+                                <p class="text-justify text-info">Fund Needed: <i class="fa fa-inr"></i> {{campaign.fund_needed}} <span style="margin-left: 10px;">Fund Raised: <i class="fa fa-inr"></i> {{campaign.fund_raised}}</span></p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="followers" role="tabpanel">
+                            <br>
+                            <div class="media mb-1" ng-repeat="follower in campaign.followers">
+                                <a class="media-left waves-light mr-2 waves-effect waves-light" style="margin-left: 20px;">
+                                    <img class="rounded-circle" ng-src="{{follower.following_profile_photo}}" style="height: 60px;width: 60px;margin-left: 5px"/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading" style="margin-top: 18px">
+                                        <a ng-href="#!/users/{{follower.follower_id}}">{{follower.following_user_name}}</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="donations" role="tabpanel">
+                            <br>
+                            <ul class="list-group">
+                                <li class="list-group-item justify-content-between" ng-repeat="donation in campaign.donations">
+                                    <a href="#!/users/{{donation.user_id}}">{{donation.user_name}} <span class="badge badge-primary" style="margin-left: 10px">{{donation.donee_type}}</span> <span style="margin-left: 10px;" class="text-muted">{{donation.created_at.split(" ")[0].split("-").reverse().join("-")}}</span></a>
+                                    <span class="badge badge-primary badge-pill"><i class="fa fa-inr"></i> {{donation.amount}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

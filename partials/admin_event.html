@@ -1,0 +1,77 @@
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10" style="margin-top: 70px" ng-init="loadDetails();">
+            <div class="row">
+                <div class="col-md-3" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">Total Events</div>
+                            <h4 class="text-center">{{totalEvents}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">Approved Events</div>
+                            <h4 class="text-center">{{approvedEventsCount}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">Pending/Saved Events</div>
+                            <h4 class="text-center">{{pendingEventsCount}}/{{savedEventsCount}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">Total Donation</div>
+                            <h4 class="text-center"><i class="fa fa-inr"></i> {{totalDonation}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="text" class="form-control" ng-model="search" placeholder="Search Events Using Id, Name, Abstract, Location, Story, Fund">
+                </div>
+                <div class="col-md-4" style="margin-top: 10px">
+                    <select ng-model="filterBy" class="form-control" style="padding: 5px">
+                        <option value="">Filter By</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card" ng-repeat="event in events| filter: search | filter: filterBy" style="margin-bottom: 20px">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-fluid" src="/assets/images/camp.jpg" ng-src="{{event.cover_photo}}" style="height: 210px;width:100%;">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-block">
+                            <a ng-href="#!/events/{{event._id}}" target="_blank"><h4 class="card-title">{{event.name}} <span class="badge red" style="font-size: 12px;margin-top: -10px">{{event.category}}</span></h4></a>
+                            <h5>Date: {{event.date.split(" ")[0].split("-").reverse().join("/")}}</h5>
+                            <h5><span>Needed: <i class="fa fa-inr"></i> {{event.fund_needed}}</span> <span style="margin-left: 30px">Raised: <i class="fa fa-inr"></i> {{event.fund_raised}}</span></h5>
+                            <h5 class="text-danger"><i class="fa fa-envelope"></i> {{event.contact_email}}</h5>
+                            <h5 class="text-danger"><i class="fa fa-mobile"></i> {{event.contact_mobile}}</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center" style="margin-top: 40px">
+                        <button class="btn btn-sm btn-primary" style="width: 185px;" ng-click="viewMore(event._id);"><i class="fa fa-eye"></i> View More</button>
+                        <button class="btn btn-sm btn-success" style="width: 185px;" ng-click="approve(event._id);" ng-show="event.status != 'approved' && event.is_approval == true"><i class="fa fa-check"></i> Approve</button>
+                        <button class="btn btn-sm btn-danger" style="width: 185px;" ng-click="delete(event._id);"><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

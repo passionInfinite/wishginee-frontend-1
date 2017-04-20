@@ -1,0 +1,107 @@
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid" ng-init="loadUser();">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10" style="margin-top: 55px">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0px">
+                    <img class="img-fluid" ng-src="{{userProfile.cover_photo}}" style="height: 250px !important;width: 100% !important; position:absolute;"/>
+                    <span id="coverfileselector" ng-show="isAuthenticated" style="position: relative;float: right">
+                        <label class="btn btn-default" for="coverupload-file-selector" style="background-color: transparent !important;">
+                            <input id="coverupload-file-selector"  class=" btn btn-primary" type="file" style="height: 2px; width: 2px;"on-file-change="uploadCover">
+                            <i class="fa fa-camera"></i>
+                        </label>
+                    </span>
+                    <button class="btn btn-primary btn-sm" ng-click="followUser(userProfile._id);" ng-hide="isFollowing || id == currentUserId" style="position: relative;float: right;"><i class="fa fa-heart-o"></i> Follow</button>
+                    <button class="btn btn-primary btn-sm" ng-click="unFollowUser(userProfile._id);" ng-show="isFollowing" style="position: relative;float: right;"><i class="fa fa-heart"></i> Following</button>
+                    <img class="img-fluid profile-photo" ng-src="{{userProfile.profile_photo}}"/>
+                    <span id="profilefileselector" ng-show="isAuthenticated" style="position: absolute;margin-right: 50%;top: 189px;left: 9px;">
+                        <label class="btn btn-default" for="profileupload-file-selector" style="background-color: transparent !important;">
+                            <input id="profileupload-file-selector"  class=" btn btn-primary" type="file" style="height: 2px; width: 2px;"on-file-change="uploadProfile">
+                            <i class="fa fa-camera"></i>
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 135px">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link text-primary active" data-toggle="tab" data-target="#information" role="tab"><i class="fa fa-user-o"></i> Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" data-toggle="tab" data-target="#followers" role="tab"><i class="fa fa-heart-o"></i> Followers <span class="badge badge-info">{{userProfile.followers.length}}</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" data-toggle="tab" data-target="#followings" role="tab"><i class="fa fa-heart"></i> Followings <span class="badge badge-info">{{userProfile.followings.length}}</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" data-toggle="tab" data-target="#donations" role="tab"><i class="fa fa-money"></i> Donations <span class="badge badge-info">{{userProfile.donations.length}}</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in show active" id="information" role="tabpanel">
+                            <div style="padding: 15px">
+                                <h4 class="font-weight-bold text-capitalize">{{userProfile.first_name+" "+userProfile.last_name}}</h4>
+                                <p class="text-muted"><i class="fa fa-clock-o"></i> {{"User Since : "+userProfile.created_at.split(" ")[0].split("-").reverse().join("/")}}</p>
+                                <p class="text-justify text-muted" ng-show="userProfile.email != null"><i class="fa fa-envelope"></i> {{userProfile.email}}</p>
+                                <p class="text-justify text-muted"><i class="fa fa-info-circle"></i> {{userProfile.description}}</p>
+                                <p class="text-justify text-muted"><i class="fa fa-user-md"></i> <a target="_blank" ng-href="{{userProfile.website}}">{{userProfile.website}}</a></p>
+                                <p class="text-justify text-muted"><i class="fa fa-location-arrow"></i> {{userProfile.city}} <i class="fa fa-globe"></i> {{userProfile.country}} </p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="followers" role="tabpanel">
+                            <br>
+                            <div class="media mb-1" ng-repeat="follower in userProfile.followers">
+                                <a ng-href="#!/users/{{follower.following_id}}" class="media-left waves-light mr-2 waves-effect waves-light" style="margin-left: 20px;">
+                                    <img class="rounded-circle" ng-src="{{follower.following_profile_photo}}" style="height: 60px;width: 60px;margin-left: 5px"/>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading" style="margin-top: 18px">
+                                        <a ng-href="#!/users/{{follower.follower_id}}">{{follower.following_user_name}}</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="followings" role="tabpanel">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6"  ng-repeat="following in userProfile.followings">
+                                    <div class="media mb-1" >
+                                        <a class="media-left waves-light mr-2 waves-effect waves-light" style="margin-left: 20px;">
+                                            <img class="rounded-circle" ng-src="{{following.follower_profile_photo}}" style="height: 60px;width: 60px;margin-left: 5px"/>
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading" style="margin-top: 5px">
+                                                <a ng-href="#!/users/{{following.followable_id}}" ng-show="{{following.followable_type === 'Wishginee\\User'}}" style="text-transform: capitalize">{{following.follower_user_name}}</a>
+                                                <a ng-href="#!/campaigns/{{following.followable_id}}" ng-show="{{following.followable_type === 'Wishginee\\Campaign'}}" style="text-transform: capitalize">{{following.follower_user_name}}</a>
+                                                <a ng-href="#!/events/{{following.followable_id}}" ng-show="{{following.followable_type === 'Wishginee\\Event'}}" style="text-transform: capitalize">{{following.follower_user_name}}</a>
+                                            </h5>
+                                            <h5 class="media-heading" style="margin-top: -6px;">
+                                                <span class="badge badge-info">{{following.followable_type.split("\\")[1]}}</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="donations" role="tabpanel">
+                            <br>
+                            <ul class="list-group">
+                                <li class="list-group-item justify-content-between" ng-repeat="donation in userProfile.donations">
+                                    <a href="#!/{{donation.donee_type}}s/{{donation.donee_id}}">{{donation.donee_name}} <span class="badge badge-primary" style="margin-left: 10px">{{donation.donee_type}}</span> <span style="margin-left: 10px;" class="text-muted">{{donation.created_at.split(" ")[0].split("-").reverse().join("-")}}</span></a>
+                                    <span class="badge badge-primary badge-pill"><i class="fa fa-inr"></i> {{donation.amount}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

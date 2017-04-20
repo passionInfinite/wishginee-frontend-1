@@ -1,0 +1,59 @@
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid" ng-init="addUser();">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-7" style="margin-top: 70px">
+            <div class="card hidden-md-down fadeIn" style="margin-bottom: 15px;" ng-repeat="feed in feeds | orderBy: feed.date.date:true">
+                <div class="card-block" style="padding: 0px">
+                    <img class="img-fluid float-left" style="height: 120px;width: 120px;" ng-src="{{feed.cover_photo}}"/>
+                    <div class="float-left" style="margin-top: 8px; margin-left: 8px">
+                        <h5 class="font-weight-normal text-capitalize" style="margin-bottom: 2px"><a  ng-href="#!/users/{{feed.user_id}}">{{feed.user_name}}</a> {{feed.text}} <a ng-href="#!/{{feed.type}}/{{feed.type_id}}">{{feed.type_name}}</a><br></h5>
+                        <p class="badge badge-info" style="font-size: 15px;margin-bottom: 7px">{{feed.category}}</p><br>
+                        <p class="text-muted" style="margin-bottom: 2px">Fund Needed : <i class="fa fa-inr"></i> {{feed.fund_needed}}</p>
+                        <p class="text-muted" style="margin-bottom: 2px">Fund Raised : <i class="fa fa-inr"></i> {{feed.fund_raised}}</p>
+                    </div>
+                    <a class="btn btn-sm btn-blue-grey float-right" style="margin-top: 42px; margin-right: 28px" href="#!/{{feed.type}}/{{feed.type_id}}"><i class="fa fa-eye"></i>  View More</a>
+                </div>
+                <div class="card-footer text-muted" style="padding: 8px;font-size: 16px">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <span class="" style="margin-left: 10px"><i class="fa fa-mobile"></i> {{feed.mobile}}</span>
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <span class="" style="margin-left: 2px"><i class="fa fa-envelope"></i> {{feed.email}}</span>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <span style="margin-left: 12px"><i class="fa fa-calendar"></i> {{feed.date.date.split(" ")[0].split("-").reverse().join("-")}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card hidden-md-up fadeIn" style="margin-bottom: 10px" ng-repeat="feed in feeds | orderBy: feed.date.date:true">
+                <div class="card-block" style="padding: 0px">
+                    <img class="img-fluid float-left" style="height: 120px;width: 100%;" ng-src="{{feed.cover_photo}}"/>
+                    <div class="float-left" style="margin-top: 8px; margin-left: 8px">
+                        <h5 class="font-weight-normal" style="margin-bottom: 2px"><a  ng-href="#!/users/{{feed.user_id}}">{{feed.user_name}}</a> {{feed.text}} <a ng-href="#!/{{feed.type}}/{{feed.type_id}}">{{feed.type_name}}</a><br></h5>
+                        <p class="badge badge-info" style="font-size: 15px;margin-bottom: 7px">Education </p><br>
+                        <p class="text-muted" style="margin-bottom: 2px">Fund Needed : <i class="fa fa-inr"></i> {{feed.fund_needed}}</p>
+                        <p class="text-muted" style="margin-bottom: 2px">Fund Raised : <i class="fa fa-inr"></i> {{feed.fund_raised}}</p>
+                    </div>
+                </div>
+                <div class="card-footer text-muted" style="padding: 8px;font-size: 16px">
+                    <div class="row">
+                        <div class="col text-center">
+                            <a href="#!/{{feed.type}}/{{feed.type_id}}"><i class="fa fa-eye"></i> View More</a>
+                        </div>
+                        <div class="col text-center">
+                            <span><i class="fa fa-mobile"></i> {{feed.mobile}}</span>
+                        </div>
+                        <div class="col text-center">
+                            <span><i class="fa fa-calendar"></i> {{feed.date.date.split(" ")[0].split("-").reverse().join("-")}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<link href="../assets/css/admin_user_style.css" rel="stylesheet">
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10 col-sm-10" style="margin-top: 65px;" ng-init="initialize();">
+            <div class="row">
+                <div class="col-md-11 col-xs-11">
+                    <h4>Profile Settings</h4>
+                    <hr>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-1 col-xs-1" style="text-align: center; margin-top: 15px;">
+                    <i class="fa fa-user profile-font"  aria-hidden="true"></i>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" placeholder="First Name" ng-model="first_name" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Last Name"  ng-model="last_name" value="{{user.last_name}}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-1 col-xs-1" style="text-align: center; margin-top: 15px;">
+                    <i class="fa fa-lock profile-font" style="font-size: 24px"  aria-hidden="true"></i>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="password" ng-model="password" placeholder="Enter Your New Password" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-1 col-xs-1" style="text-align: center; margin-top: 15px;">
+                    <i class="fa fa-pencil profile-font"  aria-hidden="true"></i>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <div class="row" style="padding: 0px 15px;">
+                        <textarea value="{{user.description}}" ng-model="description" placeholder="Enter Your Description Here.." class="md-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-1 col-xs-1" style="text-align: center; margin-top: 15px;">
+                    <i class="fa fa-globe profile-font"  aria-hidden="true"></i>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" value="{{user.website}}"  ng-model="website" placeholder="http://yourwebsite.com" value="www.bethechange.org" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-1 col-xs-1" style="text-align: center; margin-top: 15px;">
+                    <i class="fa fa-map-marker profile-font"  aria-hidden="true"></i>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" value="{{user.city}}" ng-model="city" placeholder="City" value="Vadodara" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" value="{{user.country}}" ng-model="country" placeholder="Country" value="India" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style=" margin-top: 30px;">
+                <div class="col-md-8 col-xs-8">
+                    <button type="button" class="btn btn-primary waves-effect" ng-click="updateUser(user._id);"><i class="fa fa-pencil" style="font-size: 15px;"></i>  Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

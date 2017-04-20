@@ -1,0 +1,125 @@
+<link href="../assets/css/admin_user_style.css" rel="stylesheet">
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid" ng-init="loadUserDetails();">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10 col-sm-10" style="margin-top: 90px;">
+            <div class="row">
+                <div class="col-md-2 col-sm-3">
+                    <div class="card hoverable" style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">Total Users</div>
+                            <h4 class="text-center">{{ngos.length + socialCorps.length + helpingHands.length + superUsers.length + publicUserCount}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="card hoverable" style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">NGOs</div>
+                            <h4 class="card-text">{{ngos.length}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-3">
+                    <div class="card hoverable"  style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">SC</div>
+                            <h4 class="card-text">{{socialCorps.length}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="card hoverable" style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">HH</div>
+                            <h4 class="card-text">{{helpingHands.length}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="card hoverable" style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">SU</div>
+                            <h4 class="card-text">{{superUsers.length}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="card hoverable" style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">PU</div>
+                            <h4 class="card-text">{{publicUserCount}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4">
+                    <div class="card hoverable" style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">Unapproved NGOs</div>
+                            <h4 class="card-text">{{unApprovedNGOs}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card hoverable" style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">Unapproved Social Corporates</div>
+                            <p class="card-text">{{unApprovedSCs}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card hoverable" style="margin-bottom: 10px;">
+                        <div class="card-block text-center">
+                            <div class="card-title font-weight-bold">Unapproved Helping Hands</div>
+                            <p class="card-text">{{unApprovedHHs}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+                <div class="col-md-10">
+                    <div class="md-form input-group">
+                        <input type="text" class="form-control" ng-model="search" placeholder="Search using any keyword">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <select ng-model="group" ng-init="group='0'" class="form-control">
+                        <option value="0" selected>Filter By</option>
+                        <option value="NGO">NGO</option>
+                        <option value="HH">HH</option>
+                        <option value="SC">SC</option>
+                        <option value="SU">SU</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-12">
+                    <div class="card hoverable" ng-repeat="specificUser in allUsers | filter:group | filter: search" style="margin-bottom: 20px">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p style="font-size: 20px">{{specificUser.first_name +" "+specificUser.last_name}}
+                                        <span class="badge badge-danger">{{specificUser.group}}</span>
+                                        <span style="margin-left: 10px" ng-show="specificUser.is_approved == true" class="text-success"><i class="fa fa-check" aria-hidden="true"></i> Approved</span>
+                                        <span style="margin-left: 10px" ng-show="specificUser.is_approved == false" class="text-danger"><i class="fa fa-check" aria-hidden="true"></i> Not Approved</span>
+                                    </p>
+                                    <h5>{{specificUser._id}}</h5>
+                                    <h5 class="text-warning"><i class="fa fa-envelope"></i> {{specificUser.email != null ? specificUser.email : 'N/A'}}</h5>
+                                    <h5 class="text-warning"><i class="fa fa-mobile"></i> {{specificUser.mobile != null ? specificUser.mobile : 'N/A'}}</h5>
+                                    <button class="btn btn-success btn-sm">Donations</button>
+                                    <button class="btn btn-primary btn-sm" ng-click="loadView(specificUser.group, specificUser._id);">View Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

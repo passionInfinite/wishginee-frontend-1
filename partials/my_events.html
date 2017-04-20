@@ -1,0 +1,33 @@
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10" ng-init="loadEvents();" style="margin-top: 70px">
+            <!-- Krishna Work Here! -->
+            <div class="card" ng-repeat="event in events" style="margin-bottom: 20px">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-fluid" src="/assets/images/camp.jpg" ng-src="{{event.cover_photo}}" style="height: 210px;width:100%;">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-block">
+                            <a ng-href="#!/events/{{event._id}}" target="_blank"><h4 class="card-title">{{event.name}} <span class="badge red" style="font-size: 12px;margin-top: -10px">{{event.category}}</span></h4></a>
+                            <h5>Date: {{event.date.split(" ")[0].split("-").reverse().join("/")}}</h5>
+                            <h5><span>Needed: <i class="fa fa-inr"></i> {{event.fund_needed}}</span> <span style="margin-left: 30px">Raised: <i class="fa fa-inr"></i> {{event.fund_raised}}</span></h5>
+                            <h5 class="text-success" ng-show="event.status == 'approved'" style="text-transform: capitalize"><i class="fa fa-check"></i> {{event.status}}</h5>
+                            <h5 class="text-danger" ng-show="event.status == 'pending' && event.is_approval == true"><i class="fa fa-eye"></i> Sent for approval.</h5>
+                            <h5 class="text-danger" ng-show="event.status == 'pending' && event.is_approval == null"><i class="fa fa-edit"></i> Saved.</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center" style="margin-top: 40px">
+                        <button class="btn btn-sm btn-primary" style="width: 185px;" ng-click="viewMore(event._id);"><i class="fa fa-eye"></i> View More</button>
+                        <button class="btn btn-sm btn-danger" style="width: 185px;" ng-click="delete(event._id);"><i class="fa fa-trash"></i> Delete</button>
+                        <button class="btn btn-sm btn-indigo" style="width: 185px;" ng-click="edit(event._id);"  ng-show="event.status == 'pending' && event.is_approval == null"><i class="fa fa-edit"></i> Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

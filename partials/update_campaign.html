@@ -1,0 +1,158 @@
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid" ng-init="loadCampaign();">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10" style="margin-top: 55px">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0px">
+                    <img class="img-fluid" ng-src="{{campaign.cover_photo}}" style="height: 250px !important;width: 100% !important; position:absolute;"/>
+                    <span id="coverfileselector" style="position: relative">
+                        <label class="btn btn-default" for="coverupload-file-selector" style="background-color: transparent !important;">
+                            <input id="coverupload-file-selector"  class=" btn btn-primary" type="file" style="height: 2px; width: 2px;"on-file-change="uploadCover">
+                            <i class="fa fa-camera"></i>
+                        </label>
+                    </span>
+                    <!--<img class="img-fluid profile-photo" ng-src="{{campaign.profile_photo}}"/>-->
+                    <!--<span id="profilefileselector" style="position: relative;margin-right: 50%;top: 81px;left: 9px;">-->
+                        <!--<label class="btn btn-default" for="profileupload-file-selector" style="background-color: transparent !important;">-->
+                            <!--<input id="profileupload-file-selector"  class=" btn btn-primary" type="file" style="height: 2px; width: 2px;"on-file-change="uploadProfile">-->
+                            <!--<i class="fa fa-camera"></i>-->
+                        <!--</label>-->
+                    <!--</span>-->
+                </div>
+            </div>
+            <div class="error" ng-show="error != ''">
+                {{error}}
+            </div>
+            <div class="row" style="margin-top: 228px">
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <p class="text-info">Give a meaningful and attractive name to your campaign.</p>
+                            </div>
+                            <input type="text" ng-model="campaign_name" class="form-control" placeholder="Campaign Name">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <p class="text-info">Select proper category to reach out to specific people.</p>
+                            </div>
+                            <select  style="margin-top: 28px;" ng-model="campaign_category" ng-init="campaign.category == null ? campaign_category = '0' : campaign_category = campaign_category" class="form-control">
+                                <option value="0" selected>Select Category</option>
+                                <option value="Education">Education</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Social Awareness">Social Awareness</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 15px">
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block" style="padding-bottom: 44px;">
+                            <div class="card-title">
+                                <p class="text-info">Give valid contact email. We will contact you using this email.</p>
+                            </div>
+                            <input type="email" ng-model="campaign_email" class="form-control" placeholder="Contact Email">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <p class="text-info">Give valid contact number. We will contact you using this number only.</p>
+                            </div>
+                            <input type="number" ng-model="campaign_mobile" class="form-control" placeholder="Mobile">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 15px">
+                <div class="col-md-12" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <p class="text-info">Give attractive short description about this campaign.</p>
+                            </div>
+                            <textarea ng-model="campaign_abstract" class="form-control" placeholder="Short Description" style="padding: 10px;height: 90px"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 15px">
+                <div class="col-md-12" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <p class="text-info">Give story which inspired you to start this campaign.</p>
+                            </div>
+                            <textarea ng-model="campaign_story" class="form-control" placeholder="Story Here..." style="padding: 10px;height: 90px"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 15px">
+                <div class="col-md-12" style="margin-bottom: 10px">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <p class="text-info">Location for the campaign</p>
+                            </div>
+                            <textarea ng-model="campaign_location" class="form-control" placeholder="Address here..." style="padding: 10px;height: 90px"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 15px">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <p class="text-info">Date till you want to get funding.</p>
+                            </div>
+                            <input data-provide="datepicker" data-date-format="dd/mm/yyyy" class="form-control" ng-model="campaign_date">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <p class="text-info">Fund Needed for the campaign</p>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                <input type="number" class="form-control" ng-model="campaign_fund_needed" placeholder=" Fund Needed">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <br><br>
+                    <button class="btn btn-primary" ng-click="requestForApproval();">Request for Approval</button>
+                    <br><br>
+                </div>
+                <!--<div class="col-md-6">-->
+                    <!--<br><br>-->
+                    <!--<button class="btn btn-primary" ng-click="save();">Save</button>-->
+                    <!--<br><br>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.datepicker').datepicker();
+</script>

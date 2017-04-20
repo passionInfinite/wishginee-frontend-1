@@ -1,0 +1,37 @@
+<div ng-include="'partials/navigationbar.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 hidden-md-down padding-0">
+            <div ng-include="'partials/sideBar.html'"></div>
+        </div>
+        <div class="col-md-10" ng-init="loadCampaigns();" style="margin-top: 70px">
+
+            <div class="card" ng-repeat="campaign in campaigns" style="margin-bottom: 20px">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-fluid" src="/assets/images/camp.jpg" ng-src="{{campaign.cover_photo}}" style="height: 210px;width:100%;">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-block">
+                            <a ng-href="#!/campaigns/{{campaign._id}}" target="_blank"><h4 class="card-title">{{campaign.name}} <span class="badge red" style="font-size: 12px;margin-top: -10px">{{campaign.category}}</span></h4></a>
+                            <h5>Date: {{campaign.date.date.split(" ")[0].split("-").reverse().join("/")}}</h5>
+                            <h5><span>Needed: <i class="fa fa-inr"></i> {{campaign.fund_needed}}</span> <span style="margin-left: 30px">Raised: <i class="fa fa-inr"></i> {{campaign.fund_raised}}</span></h5>
+                            <h5 class="text-success" ng-show="campaign.status == 'approved'" style="text-transform: capitalize"><i class="fa fa-check"></i> {{campaign.status}}</h5>
+                            <h5 class="text-danger" ng-show="campaign.status == 'pending' && campaign.is_approval == true"><i class="fa fa-eye"></i> Sent for approval.</h5>
+                            <h5 class="text-danger" ng-show="campaign.status == 'pending' && campaign.is_approval == null"><i class="fa fa-edit"></i> Saved.</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center" style="margin-top: 40px">
+                        <button class="btn btn-sm btn-primary" style="width: 185px;" ng-click="viewMore(campaign._id);"><i class="fa fa-eye"></i> View More</button>
+                        <button class="btn btn-sm btn-danger" style="width: 185px;" ng-click="delete(campaign._id);"><i class="fa fa-trash"></i> Delete</button>
+                        <button class="btn btn-sm btn-indigo" style="width: 185px;" ng-click="edit(campaign._id);"  ng-show="campaign.status == 'pending' && campaign.is_approval == null"><i class="fa fa-edit"></i> Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+    </div>
+</div>

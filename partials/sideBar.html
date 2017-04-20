@@ -1,0 +1,48 @@
+<ul class="list-group no-float">
+    <li class="list-group-item">Wishginee</li>
+    <li class="list-group-item">
+        <a ng-href="#!/users/{{user._id}}">
+            <img class="img-fluid float-left" ng-src="{{user.profile_photo}}" style="height: 25px;margin-top: 5px;"> <span style="padding: 5px;margin-top: 5px;" class="float-right text-capitalize">{{user.first_name}} {{user.last_name}}</span>
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a href="#!/dashboard"><i class="fa fa-globe"></i> <span style="padding: 5px">Feeds</span></a>
+    </li>
+    <li class="list-group-item">
+        <a href="#!/campaigns"><i class="fa fa-address-card-o"></i> <span style="padding: 5px">Campaigns</span></a>
+    </li>
+    <li class="list-group-item" ng-hide="user.group == 'PU' || user.group == 'SU' || user.group == 'SC'">
+        <a href="#!/my_campaigns"><i class="fa fa-address-card"></i> <span style="padding: 5px">My Campaigns</span></a>
+    </li>
+    <li class="list-group-item">
+        <a href="#!/events"><i class="fa fa-calendar"></i> <span style="padding: 5px">Events</span></a>
+    </li>
+    <li class="list-group-item" ng-hide="user.group == 'PU' || user.group == 'SU' || user.group == 'SC'">
+        <a href="#!/my_events"><i class="fa fa-calendar-o"></i> <span style="padding: 5px">My Events</span></a>
+    </li>
+    <li class="list-group-item">
+        <a href="#!/donations"><i class="fa fa-inr"></i> <span style="padding: 5px">Contributions</span></a>
+    </li>
+    <li class="list-group-item">
+        <a href="#!/settings"><i class="fa fa-cog"></i> <span style="padding: 5px">Settings</span></a>
+    </li>
+    <li class="list-group-item" ng-controller="NotificationCtrl">
+        <a href="#!/notifications" ng-click="updateSeen();"><i class="fa fa-bell"></i> <span style="padding: 5px">Notifications </span> <span class="badge badge-primary" ng-bind="user.unread_notifications"></span></a>
+    </li>
+    <li class="list-group-item">
+        <a ng-click="logout();" href="#"><i class="fa fa-sign-out"></i> <span style="padding: 5px">Logout</span></a>
+    </li>
+    <span style="padding: 5px;margin-left: 15px" ng-show="user.group == 'SU'"> <i class="fa fa-lock"></i> Admin Panel</span>
+    <li class="list-group-item"  ng-show="user.group == 'SU'">
+        <a href="#!/admin/campaigns"><i class="fa fa-address-card"></i> <span style="padding: 5px">Campaigns</span></a>
+    </li>
+    <li class="list-group-item"  ng-show="user.group == 'SU'">
+        <a href="#!/admin/events"><i class="fa fa-calendar-o"></i> <span style="padding: 5px">Events</span></a>
+    </li>
+    <li class="list-group-item"  ng-show="user.group == 'SU'">
+        <a href="#!/admin/users"><i class="fa fa-users"></i> <span style="padding: 5px">Users</span></a>
+    </li>
+    <li class="list-group-item"  ng-show="user.group == 'SU'">
+        <a href="#!/admin/donations"><i class="fa fa-inr"></i> <span style="padding: 5px">Donations</span></a>
+    </li>
+</ul>
