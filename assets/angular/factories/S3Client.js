@@ -1,6 +1,6 @@
 Wishginee.factory('S3Client', function ($q) {
 
-    AWS.config.update({'accessKeyId' : 'AKIAIFC763DOFMQFODHQ', 'secretAccessKey' : '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' });
+    AWS.config.update({'accessKeyId' : '', 'secretAccessKey' : '' });
     AWS.config.region ='ap-south-1';
 
     var S3  = new AWS.S3({
